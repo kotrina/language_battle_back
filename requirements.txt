@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+psycopg[binary]      # Cliente Postgres moderno
+pydantic-settings    # Para gestionar configuración desde env (opcional pero muy cómodo)
+python-dotenv        # Si quieres cargar .env en local
