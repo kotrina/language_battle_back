@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from typing import Any, Dict, Optional
+from pydantic import ConfigDict
 
 from pydantic import BaseModel, Field
 
@@ -50,5 +51,4 @@ class BattleOut(BattleBase):
     id: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

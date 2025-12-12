@@ -4,6 +4,7 @@ from typing import Optional
 
 from app.core.db import get_connection
 from app.models.battle import BattleCreate, BattleDB
+from psycopg.types.json import Jsonb
 
 
 TABLE_NAME = "language_battle.battles"
@@ -33,10 +34,11 @@ def save_battle(battle: BattleCreate) -> None:
         ON CONFLICT (id) DO UPDATE
         SET config = EXCLUDED.config
     """
-
+    print(query)
+    print(battle.id, '---', battle.config)
     with get_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute(query, (battle.id, battle.config))
+            cur.execute(query, (battle.id, Jsonb(battle.config)))
         conn.commit()
 
 
