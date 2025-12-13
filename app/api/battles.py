@@ -12,6 +12,7 @@ router = APIRouter(
 
 
 @router.post("/", response_model=BattleOut)
+@router.post("", response_model=BattleOut)
 def create_or_update_battle(battle: BattleCreate) -> BattleOut:
     """
     Crea o actualiza una batalla.
