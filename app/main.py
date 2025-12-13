@@ -10,13 +10,21 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS: ajusta origins cuando sepas la URL del frontend
+ALLOWED_ORIGINS = [
+    "https://language-battle.vercel.app",
+    "https://e2ffb668-eac0-4bb4-b9b9-4e737c1fc9c2.lovableproject.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],            # en producción mejor poner la URL concreta del frontend    
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=False,   # pon True solo si vas a usar cookies/sesiones
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 @app.get("/health", tags=["health"])
